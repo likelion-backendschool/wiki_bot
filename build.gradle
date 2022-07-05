@@ -1,0 +1,25 @@
+plugins {
+    id'application'
+    id'com.github.johnrengelman.shadow' version '5.2.0'
+}
+
+mainClassName = 'me.doxxx.bot.Bot'
+
+version '1.0'
+
+sourceCompatibility = targetCompatibility = 17
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+// https://mvnrepository.com/artifact/net.dv8tion/JDA
+    implementation 'net.dv8tion:JDA:5.0.0-alpha.12'
+    implementation('ch.qos.logback:logback-classic:1.2.11')
+
+    testImplementation 'com.h2database:h2:2.1.214'
+    implementation 'io.github.cdimascio:dotenv-java:2.2.4'
+}
+
+compileJava.options.encoding = 'UTF-8'
