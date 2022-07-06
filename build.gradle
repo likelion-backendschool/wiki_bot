@@ -18,7 +18,8 @@ dependencies {
     implementation 'net.dv8tion:JDA:5.0.0-alpha.12'
     implementation('ch.qos.logback:logback-classic:1.2.11')
 
-    testImplementation 'com.h2database:h2:2.1.214'
+    implementation 'mysql:mysql-connector-java:8.0.29'
+
     implementation 'io.github.cdimascio:dotenv-java:2.2.4'
 }
 
