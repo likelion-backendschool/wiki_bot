@@ -35,18 +35,19 @@ public class EventListener extends ListenerAdapter {
         input();
 
         switch (event.getChannel().getId()) {
-            case "993829912685334538" -> classChannel = 1;
-            case "993819557418508329" -> classChannel = 2;
-            case "992335078233489498" -> classChannel = 3;
+            case "975680247368384542" -> classChannel = 1;
+            case "977133295068389376" -> classChannel = 2;
+            case "977133424273928222" -> classChannel = 3;
         }
 
-        sb.append("오늘 위키 작성 부탁드립니다!\uD83D\uDE42\n");
-        sb.append(buildMention(studentMap, classChannel));
-        sb.append("위키 작성 후 작성 완료했다는 메시지 꼭 남겨주세요!!(링크 첨부)");
         if (!event.getAuthor().isBot()) {
             Message msg = event.getMessage();
             if (msg.getContentRaw().equals("!위키")) {
+                sb.append("오늘 위키 작성 부탁드립니다!\uD83D\uDE42\n");
+                sb.append(buildMention(studentMap, classChannel));
+                sb.append("위키 작성 후 작성 완료했다는 메시지 꼭 남겨주세요!!(링크 첨부)");
                 event.getChannel().sendMessage(sb.toString()).queue();
+                sb.setLength(0);
             }
         }
         sb.setLength(0);
@@ -63,7 +64,7 @@ public class EventListener extends ListenerAdapter {
             connection = DriverManager.getConnection(url, username, password);
             statement = connection.createStatement();
             resultSet = statement.executeQuery(
-                "select id,class from test where month =" + month + " AND  day = " + day);
+                "select id,class from class where month =" + month + " AND  day = " + day);
             while (resultSet.next()) {
                 studentMap.put(resultSet.getString(1), resultSet.getInt(2));
             }

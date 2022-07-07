@@ -20,7 +20,7 @@ public class DSBot {
 
         DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault(token);
         builder.setStatus(OnlineStatus.ONLINE);
-        builder.setActivity(Activity.playing("IntelliJ IDEA"));
+        builder.setActivity(Activity.playing("위키 공지"));
         builder.enableIntents(GatewayIntent.GUILD_MEMBERS);
         shardManager = builder.build();
 
