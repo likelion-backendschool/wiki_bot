@@ -32,8 +32,6 @@ public class EventListener extends ListenerAdapter {
     }
 
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
-        input();
-
         switch (event.getChannel().getId()) {
             case "975680247368384542" -> classChannel = 1;
             case "977133295068389376" -> classChannel = 2;
@@ -43,6 +41,10 @@ public class EventListener extends ListenerAdapter {
         if (!event.getAuthor().isBot()) {
             Message msg = event.getMessage();
             if (msg.getContentRaw().equals("!위키")) {
+                if (studentMap.size() == 0) {
+                    event.getChannel().sendMessage("오늘은 위키쓰는 날이 아니에요!").queue();
+                    return;
+                }
                 sb.append("오늘 위키 작성 부탁드립니다!\uD83D\uDE42\n");
                 sb.append(buildMention(studentMap, classChannel));
                 sb.append("위키 작성 후 작성 완료했다는 메시지 꼭 남겨주세요!!(링크 첨부)");
@@ -57,9 +59,9 @@ public class EventListener extends ListenerAdapter {
         int month = LocalDate.now().getMonthValue();
         int day = LocalDate.now().getDayOfMonth();
 
-        Connection connection = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
+        Connection connection;
+        Statement statement;
+        ResultSet resultSet;
         try {
             connection = DriverManager.getConnection(url, username, password);
             statement = connection.createStatement();
